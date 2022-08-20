@@ -1,0 +1,62 @@
+<PreferenceScreen
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+            app:title="包名配置">
+
+        <EditTextPreference
+                app:key="package"
+                app:title="包名"
+                app:defaultValue="encrypt.taisuii.cn"
+                app:useSimpleSummaryProvider="true"/>
+
+        <ListPreference
+                app:key="scope"
+                app:title="作用域"
+                app:entries="@array/scope_entries"
+                app:entryValues="@array/scope_values"
+                app:defaultValue="all"
+                app:useSimpleSummaryProvider="true"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            app:title="Hook设置">
+
+        <SwitchPreferenceCompat
+                app:key="Hook"
+                app:defaultValue="true"
+                app:title="开启Hook"/>
+        <SwitchPreferenceCompat
+                app:key="Enc_Hook"
+                app:title="Enc_Hook"
+                app:defaultValue="true"
+                app:summaryOn="JDK加密算法Hook已开启"
+                app:summaryOff="JDK加密算法Hook已关闭"
+                app:dependency="Hook"/>
+
+        <SwitchPreferenceCompat
+                app:key="Self_Hook"
+                app:title="自设Hook"
+                app:defaultValue="true"
+                app:summaryOn="自己定义Hook 配合电脑端"
+                app:summaryOff="已关闭自定义Self_Hook"
+                app:dependency="Hook"/>
+        <SwitchPreferenceCompat
+                app:key="JustTrustMePlus"
+                app:title="JustTrustMePlus"
+                app:defaultValue="true"
+                app:summaryOn="在JustTrustMe的基础上增加对混淆APP的处理"
+                app:summaryOff="感谢看雪珍惜的思路和代码"
+                app:dependency="Hook"/>
+
+        <SwitchPreferenceCompat
+                app:key="about"
+                app:title="更多功能待添加"
+                app:summaryOn="当前版本 1.3"
+                app:summaryOff="当前APP版本 1.3"
+                app:dependency="Hook"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

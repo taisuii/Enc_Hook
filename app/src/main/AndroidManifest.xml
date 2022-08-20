@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="taisuii.cn">
+
+    <uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
+
+    <application
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:label="@string/app_name"
+            android:allowBackup="true"
+            android:roundIcon="@drawable/ic_baseline_settings_24"
+            android:supportsRtl="true"
+            android:theme="@style/Theme.HOOK">
+
+        <meta-data
+                android:name="xposedmodule"
+                android:value="true"/>
+        <meta-data
+                android:name="xposeddescription"
+                android:value="此版本2022年8月发布，更新地址: x.taisuii.cn"/>
+        <meta-data
+                android:name="xposedminversion"
+                android:value="53"/>
+
+        <activity
+                android:name=".MainActivity"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+                android:name=".SettingsActivity"
+                android:exported="true">
+        </activity>
+
+    </application>
+
+</manifest>
