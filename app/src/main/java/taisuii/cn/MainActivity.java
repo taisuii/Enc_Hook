@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void delete(View view) {
-        Util.ClearLog("");
+//        Util.ClearLog("");
         editText.setText("");
     }
 
