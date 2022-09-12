@@ -4,18 +4,22 @@
     <PreferenceCategory
             app:title="包名配置">
 
-        <EditTextPreference
+        <ListPreference
                 app:key="package"
                 app:title="包名"
                 app:defaultValue="encrypt.taisuii.cn"
-                app:useSimpleSummaryProvider="true"/>
+                app:entries="@array/defaultValue"
+                app:entryValues="@array/defaultValue"
+                app:useSimpleSummaryProvider="true"
+                />
 
         <ListPreference
                 app:key="scope"
                 app:title="作用域"
+                app:defaultValue="all"
+
                 app:entries="@array/scope_entries"
                 app:entryValues="@array/scope_values"
-                app:defaultValue="all"
                 app:useSimpleSummaryProvider="true"/>
 
     </PreferenceCategory>
@@ -53,8 +57,8 @@
         <SwitchPreferenceCompat
                 app:key="about"
                 app:title="更多功能待添加"
-                app:summaryOn="当前版本 1.3"
-                app:summaryOff="当前APP版本 1.3"
+                app:summaryOn="当前版本 1.4"
+                app:summaryOff="当前APP版本 1.4"
                 app:dependency="Hook"/>
 
     </PreferenceCategory>

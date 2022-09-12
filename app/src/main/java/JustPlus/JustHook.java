@@ -63,6 +63,8 @@ import org.apache.http.params.HttpParams;
 
 
 import org.json.JSONObject;
+import taisuii.cn.EnConfig;
+import taisuii.cn.SelfConfig;
 import taisuii.cn.Util;
 import taisuii.cn.taisui;
 
@@ -96,27 +98,12 @@ public class JustHook implements IXposedHookLoadPackage {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) throws Throwable {
         String packager = loadPackageParam.packageName;
-        String Hook_package = "encrypt.taisuii.cn";
-        String Hook_scope = "all";
-        boolean Hook_hook = true;
+        EnConfig enConfig = new EnConfig();
         boolean filter = true;
-        boolean JustTrustMe = true;
+        if (enConfig.getScope().equals("package")) filter = packager.equals(enConfig.getPackageName());
 
-        try {
-            String json = Util.GetConf();
-            JSONObject jsonObject = new JSONObject(json);
-            Hook_package = jsonObject.getString("package");
-            Hook_hook = jsonObject.getBoolean("hook");
-            Hook_scope = jsonObject.getString("scope");
-            JustTrustMe = jsonObject.getBoolean("JustTrustMePlus");
-        } catch (Exception e) {
-            taisui.JustLog("JustTrustMePlus err: " + e);
-        }
-
-        if (Hook_scope.equals("package")) filter = packager.equals(Hook_package);
-
-        if (Hook_hook && filter) {
-            if (JustTrustMe){
+        if (enConfig.isHook() && filter) {
+            if (enConfig.isJustTrustMePlus()){
                 taisui.JustLog("JustTrustMePlus target: " + packager);
                 this.lpparam = loadPackageParam;
                 HookAttach();

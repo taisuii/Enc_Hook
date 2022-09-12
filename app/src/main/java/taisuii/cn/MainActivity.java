@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,10 +21,10 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     Context context;
-    TextView packager;
-    TextView tv_reply;
-    TextView tv_sync;
-    TextView tv_notifications;
+    static TextView packager;
+    static TextView tv_reply;
+    static TextView tv_sync;
+    static TextView tv_notifications;
     @SuppressLint("StaticFieldLeak")
     static EditText editText;
     SharedPreferences pref;
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         setContext("当前设备SDK：" + android.os.Build.VERSION.SDK_INT);
 
         context = getApplicationContext();
+
         pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         setText();
 
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "模块已启动", Toast.LENGTH_SHORT).show();
         }
 
+
     }
 
     public void onClick(View view) {
@@ -60,20 +64,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void read(View view) {
-
         Util.SetConf(Util.GetJson(pref));
         setContext("刷新成功");
         setText();
+//        setContext(Util.ReadLog("Enc_Hook"));
     }
 
     public void delete(View view) {
+        Util.ClearLog("");
         editText.setText("");
     }
 
+
     @SuppressLint("SetTextI18n")
-    public void setText() {
-        String json = Util.GetConf();
-        String Self = Util.Self();
+    public static void setText() {
+        String json = Util.EncConfig();
+        String Self = Util.SelfConfig();
         setContext(json);
         setContext(Self);
 
@@ -89,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         setContext("JustTrustMePlus: " + Util.GetJson(json, "JustTrustMePlus"));
     }
 
+
     public static void setContext(String arg) {
         Date date = new Date();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
@@ -97,7 +104,9 @@ public class MainActivity extends AppCompatActivity {
         editText.getText().append("[").append(dateFormat.format(date)).append("]").append(arg).append("\n");
     }
 
+
     private boolean isModuleActive() {
         return false;
     }
+
 }

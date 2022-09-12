@@ -9,4 +9,7 @@
         <item>package</item>
         <item>all</item>
     </string-array>
+    <string-array name="defaultValue">
+        <item>加密测试\nencrypt.taisuii.cn</item>
+    </string-array>
 </resources>
