@@ -14,7 +14,7 @@ adb logcat -s Enc_Hook -v thread > log.txt
 # Self_Hook
 ### 日志查看
 ```
-adb logcat -s Enc_Hook
+adb logcat -s Self_Hook
 ```
 ### 日志清除
 ```
