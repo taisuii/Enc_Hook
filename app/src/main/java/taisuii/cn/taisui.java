@@ -98,6 +98,6 @@ public class taisui {
 
     public static void log_d(String tag, String data) {
         Log.d(tag, data);
-        Util.AddLog(tag, data);
+//        Util.AddLog(tag, data);
     }
 }
