@@ -86,6 +86,7 @@ public class Util {
     public static void SetConf(String Json) {
 
         Runtime runtime = Runtime.getRuntime();
+        String json = "{\"isTraceMethod\":false,\"TraceClass\":\"\",\"TraceMethod\":\"\",\"isPrintClass\":false,\"FilterClass\":\"\"}";
         try {
             if (new File(PATH).exists() && new File(SELF_PATH).exists() && new File(TRACE_PATH).exists()) {
                 runtime.exec(new String[]{"sh", "-c", "echo \"" + Json.replace("\"", "\\\"") + "\" > " + PATH});
@@ -99,7 +100,7 @@ public class Util {
                                 + "chmod 777 " + PATH + "\n"
                                 + "echo [] > " + SELF_PATH + "\n"
                                 + "chmod 777 " + SELF_PATH + "\n"
-                                + "echo {} > " + TRACE_PATH + "\n"
+                                + "echo \"" + json.replace("\"", "\\\"") + "\" > " + TRACE_PATH + "\n"
                                 + "chmod 777 " + TRACE_PATH + "\n"
                 });
             }

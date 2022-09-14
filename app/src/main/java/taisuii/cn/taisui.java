@@ -50,17 +50,31 @@ public class taisui {
                 } else if (args.getClass() == String.class) {
                     log_d(tag, before + "[" + i + "] String raw: " + args);
                 } else if (args.getClass() == StringBuilder.class) {
-                    log_d(tag, before + "[" + i + "] StringBuilder raw: " + args.toString());
+                    log_d(tag, before + "[" + i + "] StringBuilder raw: " + ((StringBuilder) args).toString());
                 } else if (args.getClass() == HashMap.class) {
                     log_d(tag, before + "[" + i + "] HashMap raw: " + new JSONObject((HashMap) args).toString());
                 } else if (args.getClass() == JSONObject.class) {
-                    log_d(tag, before + "[" + i + "] JSONObject raw: " + args.toString());
+                    log_d(tag, before + "[" + i + "] JSONObject raw: " + ((JSONObject)args).toString());
+                } else if (args.getClass() == char[].class) {
+                    log_d(tag, before + "[" + i + "] char[] raw: " + new String((char[]) args));
                 } else {
-                    log_d(tag, before + "[" + i + "] unknown " + args.getClass());
+                    log_d(tag, before + "[" + i + "] unknown.getClass " + args.getClass());
                     try {
-                        log_d(tag, before + "[" + i + "] unknown raw: " + args.toString());
+                        log_d(tag, before + " unknown raw: " + String.valueOf(args));
+                    } catch (Exception e) {
+                        log_d(tag, " unknown err: " + e);
+                    }
+
+                    try {
+                        log_d(tag, before + "[" + i + "] unknown raw.toString: " + args.toString());
                     } catch (Exception e) {
                         log_d(tag, " [" + i + "] unknown err: " + e);
+                    }
+
+                    try {
+                        log_d(tag, before + " unknown (String)raw: " + (String) args);
+                    } catch (Exception e) {
+                        log_d(tag, " unknown err: " + e);
                     }
 
                 }
@@ -80,19 +94,37 @@ public class taisui {
             } else if (result.getClass() == String.class) {
                 log_d(tag, before + " String raw: " + result);
             } else if (result.getClass() == StringBuilder.class) {
-                log_d(tag, before + " StringBuilder: " + result.toString());
+                log_d(tag, before + " StringBuilder: " + ((StringBuilder) result).toString());
             } else if (result.getClass() == HashMap.class) {
                 log_d(tag, before + " HashMap: " + new JSONObject((HashMap) result).toString());
             } else if (result.getClass() == JSONObject.class) {
-                log_d(tag, before + " JSONObject: " + result.toString());
+                log_d(tag, before + " JSONObject: " +  ((JSONObject)result).toString());
+            } else if (result.getClass() == char[].class) {
+                log_d(tag, before + " char[]: " + new String((char[]) result));
             } else {
-                log_d(tag, before + " unknown " + result.getClass().toString());
+
+                log_d(tag, before + " unknown.getClass " + result.getClass().toString());
+
                 try {
-                    log_d(tag, before + " unknown raw: " + result.toString());
+                    log_d(tag, before + " unknown raw: " + String.valueOf(result));
                 } catch (Exception e) {
                     log_d(tag, " unknown err: " + e);
                 }
+
+                try {
+                    log_d(tag, before + " unknown raw.toString: " + result.toString());
+                } catch (Exception e) {
+                    log_d(tag, " unknown err: " + e);
+                }
+
+                try {
+                    log_d(tag, before + " unknown (String)raw: " + (String) result);
+                } catch (Exception e) {
+                    log_d(tag, " unknown err: " + e);
+                }
+
             }
+
         }
     }
 

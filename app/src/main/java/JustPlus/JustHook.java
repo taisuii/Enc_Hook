@@ -133,6 +133,7 @@ public class JustHook implements IXposedHookLoadPackage {
                 new XC_MethodHook() {
 
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+
                         super.afterHookedMethod(param);
                         taisui.JustLog("Hook到    onCreate");
                         if (flag == 0) {
@@ -146,6 +147,7 @@ public class JustHook implements IXposedHookLoadPackage {
                             HookOkHttpClient();
                             flag = 1;
                         }
+
                     }
 
                 });
@@ -931,9 +933,7 @@ public class JustHook implements IXposedHookLoadPackage {
 
         //SSLContext.init >> (null,ImSureItsLegitTrustManager,null)
         findAndHookMethod("javax.net.ssl.SSLContext", lpparam.classLoader, "init", KeyManager[].class, TrustManager[].class, SecureRandom.class, new XC_MethodHook() {
-
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-
                 param.args[0] = null;
                 param.args[1] = new TrustManager[]{new ImSureItsLegitTrustManager()};
                 param.args[2] = null;
@@ -959,6 +959,7 @@ public class JustHook implements IXposedHookLoadPackage {
         taisui.JustLog("开始 获取全部的类名  ");
 
         classNameList.clear();
+
         try {
             //系统的 classloader是 Pathclassloader需要 拿到他的 父类 BaseClassloader才有 pathList
             Field pathListField = Objects.requireNonNull(mLoader.getClass().getSuperclass()).getDeclaredField("pathList");
@@ -986,6 +987,7 @@ public class JustHook implements IXposedHookLoadPackage {
         Enumeration<String> enumeration = dexFile.entries();
         while (enumeration.hasMoreElements()) {//遍历
             String className = enumeration.nextElement();
+//            taisui.JustLog(className);
             if (className.contains("okhttp3")) {//在当前所有可执行的类里面查找包含有该包名的所有类
                 classNameList.add(className);
             }
