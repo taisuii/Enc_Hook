@@ -1,4 +1,4 @@
-# Enc_Hook
+# Enc_Hook 使用教程x.taisuii.cn
 ### Hook Java内的API加密算法
 ### 日志查看
 ```
